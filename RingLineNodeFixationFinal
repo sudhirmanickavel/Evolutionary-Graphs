@@ -1,0 +1,43 @@
+import csv 
+from decimal import *
+import numpy as np
+n = 1.0
+f = 5
+i = 1
+Probl = []
+muts = []
+mutsx = []
+import matplotlib.pyplot as plt
+#for i in range (9): 
+while i <= 9: 
+	while f <= 9: 
+		string = "reader" + str(i+1) 
+		print (n)
+		output = 'output_5_%d.csv' % n
+		print (output)
+		string = csv.reader(open(output, 'rU'), delimiter=',', dialect='excel')
+		for row in string: 	
+			muts.append(row[f])
+		t = 10000
+		k = 0
+		B = 0
+		while t <= 60000: 
+			mutsx = muts[k:t-1]
+			mutsx = list(map(int, mutsx)) 
+			A = mutsx.count(6)
+			print(A)
+			DecA = Decimal(A)
+			DecLen = Decimal(10000)
+			Prob = DecA/DecLen
+			Probf = float(Prob)
+			Probl.append(Probf)
+			t = t + 10000
+			k = k + 10000
+		muts = []
+		f = f + 1 
+		t = 10000
+		k = 0 
+	i = i + 1 
+	n = n + 1 
+	f = 5
+print(Probl)
